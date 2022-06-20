@@ -1,0 +1,190 @@
+First of all Download all Hibernate Jar files
+
+https://jar-download.com/artifacts/org.hibernate/hibernate-core
+
+Extract Them
+
+Download mysql Connector: https://jar-download.com/artifacts/mysql/mysql-connector-java
+
+Extract Them
+
+Merge all Jar files in one folder so you can easily find the same.
+
+Create Simple Java Project in Eclipse
+---------------------------------------------
+
+Let's add Jar files in this project.
+
+right click on your project --> buildpath --> configure buildpath --> select library tab --> click on class path--> you can see add external Jar option enabled --> click on that and select all JAR files which you have downloaded --> apply --> apply and finish.
+
+next step is let's create POJO (BEAN class)
+________________________________________________________
+
+package com.simplilearn.demo;
+
+public class Student {
+
+	private int id;
+	private String name;
+	private String email;
+	private String password;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
+}
+_______________________________________________________________________________________________
+
+create configuration file (hibernate.cfg.xml)
+
+right click on src --> new --> other --> xml --> select XML file --> give the file name (hibernate.cfg.xml)
+ and click on finish.
+
+once the xml file created then you have to add dtd (data type defination configuration)
+that you can get it online as well --> how you can take it from JAR file
+
+expand libraries--> open hibernate core --> expand first package orm.hibernate --> scroll Down where you can see the dtd and xsd files for mapping and configuration. (you can copy mapping config from mapping dtd and configuration config from configuration DTD)
+
+after that in configuration you need to set Database Properties (driver, url , username and password)
+
+_______________________________________________________________________________________________________
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+	
+	<hibernate-configuration>
+		<session-factory>
+			<property name="connection.driver.class">com.mysql.cj.jdbc.Driver</property>
+			<property name="connection.url">jdbc:mysql://localhost:3306/student</property>
+			<property name="connection.username">root</property>
+			<property name="connection.password">Sonam@123</property>
+			<property name="hbm2ddl.auto">update</property>
+			
+			<mapping resource="student.hbm.xml"/>
+		</session-factory>
+		
+	</hibernate-configuration>
+
+________________________________________________________________________________________________________
+
+Here mapping resource is just saying that map the java class to Database using that mapping file
+
+so if you have 3 java classes and you want to map them to DB then you have to create 3 mapping files.
+(so you can give names like classname.hbm.xml) for ex. student.hbm.xml, employee.hbm.xml
+
+How to create Mapping file again create one xml file give name
+
+add mapping dtd in the file and add class details with Properties of class.
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+    <hibernate-mapping>
+    	<class name="com.simplilearn.demo.Student">
+    	<!-- ID tag consider Primary Key, increment class will do auto Increment -->
+    		<id name="id">
+    			<generator class="increment"></generator>
+    		</id>
+    		<property name="name" type="string"></property>
+    		<property name="email" type="string"></property>
+    		<property name="password" type="string"></property>
+    	</class>
+    </hibernate-mapping>
+
+__________________________________________________________________________________________________________
+
+here Id tag create id fields as Primary key, generator class will hep you to generate keys auto incremently.
+
+other properties you need to add according to your class fields.
+
+__________________________________________________________________________________________________________
+
+How to Run all this 
+
+Lets create a main class
+
+package com.simplilearn.demo;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		StandardServiceRegistry registry= new StandardServiceRegistryBuilder()
+				.configure("hibernate.cfg.xml").build();
+		Metadata metadata= new MetadataSources(registry).getMetadataBuilder().build();
+		//connection pool
+		SessionFactory factory= metadata.getSessionFactoryBuilder().build();
+		//let's take one database connection to do transactions
+		Session session= factory.openSession();
+		
+		Student s1= new Student();
+		s1.setName("Praneetha");
+		s1.setEmail("p@gmail.com");
+		s1.setPassword("Praneetha@123");
+		
+		Transaction tx= session.beginTransaction();
+		session.save(s1);
+		
+		tx.commit();
+		//automatically table created in db and data inserted in the same.
+		
+		session.close();
+		factory.close();
+		System.out.println("Data inserted successfully");
+	}
+}
+_______________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
