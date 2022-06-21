@@ -1,0 +1,51 @@
+create maven project
+
+next --> select archtype from dropdown --> click catalog and change it to internal --> for webapp --> scroll down and select last one webapp archetype
+
+click on next
+
+give group Id: com.simplilearn
+
+ArtifactId:(projectName): HibernateWEBAPP
+
+packagename: com.simplilearn.webapp
+
+click --> next --> finish
+
+once the project create : you can't see java folder
+
+roght click on your project--> build path--> configure buildpath--> order and export --> click on check boxes (JRE and maven)-->apply --> apply and close
+
+next If you see any initialization error in pom.xml then open and add maven war plugin after finalname tag
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.2</version>
+			</plugin>
+		</plugins>
+
+save it.
+
+next check is your jsp page giving any error for HTTPServlet
+
+open pom.xml and add servlet-api dependency after JUNIT dependency
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+save it. check error removed? if not then right click on your project --> maven --> maven update
+
+once the project updated the error will removed from the same.
+
+
+
+
+
+
+
