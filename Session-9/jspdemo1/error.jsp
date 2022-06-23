@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isErrorPage="true" %>
+    pageEncoding="UTF-8" isErrorPage="true" info="This is my error handling page" 
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,5 +10,7 @@
 <body>
 <h1>Error Handling Page</h1>
 <%= exception.getMessage() %>
+
+<%@ include file="date.jsp" %>
 </body>
 </html>
