@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="obj" class="com.simplilearn.spring.HelloWorld"></bean>
+    
+    <!-- Create Marks Object -->
+    <bean id="m" class="com.simplilearn.spring.Marks">
+    	<property name="phy" value="89"></property>
+    	<property name="maths" value="90"></property>
+    	<property name="chem" value="88"></property>
+    </bean>
+    
+    <!-- Injected the dependency with help of setter method -->
+    <bean id="s1" class="com.simplilearn.spring.Student">
+    	<property name="id" value="1"></property>
+    	<property name="name" value="Sonam Soni"></property>
+    	<property name="marks" ref="m"></property>
+    </bean>
+
+</beans>
