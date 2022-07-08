@@ -1,0 +1,110 @@
+Exception Handling in Springboot
+__________________________________________________
+
+create springboot application
+
+and create controller named MainController
+_____________________________________________________
+
+package com.simplilearn.springbootdemo;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class MainController {
+
+	@GetMapping("/hello")
+	public String hello() {
+		return "Welcome from Springboot App";
+	}
+	
+	@GetMapping("/data")
+	public ResponseEntity<Object> getData(){
+		return new ResponseEntity<Object>(new Student(1, "Sonam Soni"),HttpStatus.FOUND);
+	}
+}
+_________________________________________________________________________________________________
+
+you can go to you application class and just include the component scan with base package name and
+right click on class and run application as just a simple java application
+
+your application will run on embbdded apache tomcat and you can see by default it will run on port number 8080
+
+open localhost:8080/hello to check Hello method
+localhost:8080/data to check getData method
+
+
+what if your controller is throwing the execption?
+
+create One class name ProductNotFoundException
+
+package com.simplilearn.springbootdemo;
+
+public class ProductNotFoundException extends RuntimeException{
+
+	public ProductNotFoundException() {
+		super();
+	}
+	public ProductNotFoundException(String mes) {
+		super(mes);
+	}
+	@Override
+	public String toString() {
+		return "ProductNotFoundException "+ super.toString();
+	}
+	
+}
+_____________________________________________________________________________________
+
+include one method in your main controller
+
+@GetMapping("/product/{id}")
+	public ResponseEntity<Object> getProduct(@PathVariable("id") String id){
+		if(id.contentEquals("0"))
+			throw new ProductNotFoundException("No product available with 0 id");
+		else
+			return new ResponseEntity<Object>("Product Found",HttpStatus.FOUND);
+	}
+
+___________________________________________________________________________________________________
+
+If you run this again and check
+
+localhost:8080/product/1 --> product found
+
+if you give localhost:8080/product/0 it will give you internal server error
+
+to Handle this error create ProductExceptionController as below
+
+package com.simplilearn.springbootdemo;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+@ControllerAdvice
+public class ProductExceptionController {
+
+	@ExceptionHandler(value = ProductNotFoundException.class)
+	public ResponseEntity<Object> hanldeException(ProductNotFoundException ex){
+		return new ResponseEntity<Object>("Product not available with Id 0",HttpStatus.NOT_FOUND);
+	}
+}
+
+
+_______________________________________________________________________________________________________
+whenever your application throw ProductNotFoundException it will be handled by handleException Method
+
+now if you run your project again
+
+check localhost:8080/product/0 and exception handling message you can see in API testoing tool POSTMAN
+
+
+
+											
