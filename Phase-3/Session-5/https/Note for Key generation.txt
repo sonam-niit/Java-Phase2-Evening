@@ -1,0 +1,16 @@
+keytool -genkey -alias tomcat -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+
+It will ask you for password --> enter and rememeber the same
+
+and answer some few question and atlast type yes
+
+the key is generated at the same location where you will execute the keytool command
+
+so you can execute the command at your project location.
+
+
+According to the command executed you can add application properties and create simple controller and run your application.
+
+when you run localhost:443 you won't be able to see output
+
+check https://localhost:443/
