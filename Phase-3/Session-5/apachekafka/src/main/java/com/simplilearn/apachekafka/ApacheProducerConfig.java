@@ -20,7 +20,7 @@ public class ApacheProducerConfig {
 		
 		Map<String, Object> configProp= new HashMap<String, Object>();
 		
-		configProp.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091");
+		configProp.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 		configProp.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 		configProp.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 		

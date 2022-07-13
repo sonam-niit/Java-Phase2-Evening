@@ -19,7 +19,7 @@ public class ApacheConsumerConfig {
 	@Bean
 	public ConsumerFactory<String, String> consumerFactory(){
 		Map<String, Object> configProp= new HashMap<String, Object>();
-		configProp.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091");
+		configProp.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
 		configProp.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		configProp.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		configProp.put(ConsumerConfig.GROUP_ID_CONFIG, "group-id");

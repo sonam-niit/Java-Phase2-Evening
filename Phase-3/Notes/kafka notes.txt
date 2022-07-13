@@ -1,0 +1,18 @@
+Apache Kafka
+-----------------------------------
+
+download apache kafka and unzip the same in d drive name it as kafka
+
+move to kafka folder and 
+
+start zeekooper server first using below command
+
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+start kafka server using below command
+
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+default kafka server start on port number 9092
+
+Now start run your application and send messages which you can recive in your console
