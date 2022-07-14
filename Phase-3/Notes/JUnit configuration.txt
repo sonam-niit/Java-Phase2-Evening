@@ -1,0 +1,84 @@
+jUnit Sample Projetct
+------------------------------
+
+way 1: you can create simple project and add junit jar files
+
+way 2: create maven project and include dependencies in that
+
+	include 2 dependencies
+
+	1. junit-jupiter-api
+	2. junit-jupiter-engine
+
+	also remove the old junit 3 dependecy
+	--> when you remove the default code available in src/test/java will give
+	    error, delete that file
+
+	right click on src/test/java and search in other for junit test case
+
+	when you try to give junit 5 while creating test case, application may 	show you warning like it will works only with higher version like >=8
+	
+	so first of all include maven compiler plugin in pom.xml
+
+	add this after dependencies tag
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+--------------------------------------------------------------------------------
+
+right click on your project and maven update.
+
+now again try to create junit test case
+
+and implement diffrent annotation
+
+package com.simplilearn.junittesting1;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class SampleTest {
+
+	@BeforeAll
+	public static void beforeAll() {
+		System.out.println("Before All Test");
+	}
+	@AfterAll
+	public static void afterAll() {
+		System.out.println("After All Test");
+	}
+	@BeforeEach
+	public void beforeEach() {
+		System.err.println("Executed before Each");
+	}
+	@AfterEach
+	public void afterEach() {
+		System.err.println("Executed after each");
+	}
+	@Test
+	public void testOne() {
+		System.out.println("This is my first Test");
+	}
+	@Test
+	public void testTwo() {
+		System.out.println("This is my second test");
+	}
+}
+ 
