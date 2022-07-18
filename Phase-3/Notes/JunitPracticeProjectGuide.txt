@@ -1,0 +1,61 @@
+class Authentication
+{
+        public boolean authenticate(String uname,String password)
+	{
+		return UserDao.authenticate(uname,password);
+	}
+}
+
+class UserDao
+{
+           public boolean authenticate(String uname,String password)
+	   {
+		String sql="select * from user where uname=? , password=?";
+
+		Connection con= DBConfig.getConnection();
+		PreparedStatement stmt= con.preparedStatement(sql);
+		stmt.setString(1,uname);
+		stmt.setString(2,pass);
+		ResultSet rs=stmt.executeQuery();
+
+		if(rs.next())
+			return true;
+		else
+			return false;
+	   }
+}
+
+class DBConfig
+{
+	//using jdbc
+	public static Connection getConnection()
+	{
+		driver,url,username,password
+
+		get connection and return it
+	}
+}
+
+
+
+
+Test case
+---------------------------
+
+public void test1()
+{
+	assertTrue(Authetication.aunthecate("sonam123","123456");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
