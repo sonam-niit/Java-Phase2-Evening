@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <form class="input-group">
+            <input type="text" class="typeahead form-control" id="query" 
+            placeholder="type here" data-provider="typeahead">
+
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+<script>
+    $(document).ready(function(){
+        var data=['HTML','HTML5','CSS','JAVA','Javascript','Python'];
+        $("#query").typeahead({source:data})
+    })
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

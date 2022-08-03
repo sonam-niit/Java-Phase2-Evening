@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nav Bar Demo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+
+<body data-spy="scroll">
+    <div class="container">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+            <a href="#" class="navbar-brand">Simplilern</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="mydropdown" data-toggle="dropdown">What We Offer</a>
+                    <div class="dropdown-menu" aria-labelledby="mydropdown">
+                        <a href="#java" class="dropdown-item">JAVA</a>
+                        <a href="#adjava" class="dropdown-item">Advance Java</a>
+                        <a href="#framework" class="dropdown-item">Frameworks</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact Us</a>
+                </li>
+            </ul>
+        </nav>
+        <div id="home" class="bg-primary" style="padding-top:200px ;padding-bottom: 200px;">
+            <h1>This is my Home Content</h1>
+        </div>
+        <div id="about" class="bg-warning" style="padding-top:200px ;padding-bottom: 200px;">
+            <h1>This is my About Content</h1>
+        </div>
+        <div id="contact" class="bg-secondary" style="padding-top:200px ;padding-bottom: 200px;">
+            <h1>This is my Contact Us Content</h1>
+        </div>
+        <div id="java" class="bg-primary" style="padding-top:200px ;padding-bottom: 200px;">
+            <h1>This is my Java Content</h1>
+        </div>
+        <div id="adjava" class="bg-info" style="padding-top:200px ;padding-bottom: 200px;">
+            <h1>This is my Advance Java Content</h1>
+        </div>
+        <div id="framework" class="bg-primary" style="padding-top:200px ;padding-bottom: 200px;">
+            <h1>This is my Framework Content</h1>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
