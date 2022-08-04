@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let add= (a,b)=> a+b;
+        let sub= (a,b)=> a-b;
+
+        let data=(num1,num2,callback)=>callback(num1,num2);
+
+        console.log(data(10,20,add));
+        console.log(data(23,6,sub));
+
+        let mul= (a) => (b) => a*b;
+        let div= (a) => (b) => a/b;
+
+        console.log(mul(10)(20));
+        console.log(div(10)(20));
+    </script>
+</body>
+</html>

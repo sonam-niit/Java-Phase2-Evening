@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //functional Constructor
+        function Employee(name,designation,yearOfBirth){
+            this.name=name
+            this.designation=designation
+            this.yearOfBirth=yearOfBirth
+        }
+        //prototype
+        Employee.prototype.calulateAge= function(){
+            console.log("Age: "+ (2022-this.yearOfBirth))
+        }
+        //create prototype print to print values of Employee
+        var emp1= new Employee('sonam','trainer',1993)
+        var emp2= new Employee('Mitali','Developer',1995)
+
+        console.log(emp1.name+" "+emp1.designation+" "+emp1.yearOfBirth)
+        console.log(emp2)
+        emp1.calulateAge()
+        emp2.calulateAge()
+        console.log(emp1.name.toString())
+    </script>
+</body>
+</html>

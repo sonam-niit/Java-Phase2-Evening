@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        const print = () => console.log("Hello World");
+
+        const add= (a,b) => a+b; //return addition of 2 numbers
+
+        const test = (a,b) => {
+            num1=a+b;
+            num2=a*b;
+            return num1+num2;
+        }
+
+        print();
+        console.log('addition '+add(2,3));
+        console.log('test '+test(2,3));
+        //IIFe with Arrow fuction
+        (
+            ()=>console.log('my function')
+        )();
+    </script>
+</body>
+</html>

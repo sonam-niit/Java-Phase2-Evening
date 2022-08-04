@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a=20;
+
+        function print(){
+            var a=10;//local
+            console.log(a); // here it will print a=10
+        }
+        print()
+        console.log(a)//print 20 //global
+
+        const pi=3.14; //can't change value of const
+        function test(){
+            const pi=22/7;
+            console.log(pi);
+        }
+        test()
+        console.log(pi)
+    </script>
+</body>
+</html>

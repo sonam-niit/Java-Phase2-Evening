@@ -10,15 +10,18 @@
     <script>
         //function declaration
         function print(){
-            document.write("pint function called<br>")
+            document.write("print function called<br>")
         }
         function add(a,b){
             return a+b;
         }
+        function intrest(p,r,n){
+            console.log("Intrest: "+(p*r*n/100))
+        }
         //function calling
         print();
         document.write("<br>Addition is "+add(2,3));
-
+        intrest(1000,6,2);
     </script>
 </body>
 </html>
