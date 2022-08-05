@@ -1,0 +1,36 @@
+class Expense
+{
+	name;
+	description;
+	anmount;
+
+	//constructor
+	//method display expense
+}
+let expenses=[]
+function addExpense(exp)
+{
+	expenses.push(exp)	
+}
+
+funtion removeExpense(exp)
+{
+ //logic
+}
+
+function showAllExpenses()
+{
+	//logic
+}
+
+function calculateBudget()
+{
+	//calculate budget
+}
+
+while(true)
+{
+	name=prompt("enter expense name");
+	//create object of expense and 
+	//add it to expense list
+}

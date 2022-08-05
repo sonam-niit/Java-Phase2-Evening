@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>map demo</title>
+</head>
+<body>
+    <h1>Map Demo</h1>
+    <script>
+        let map= new Map();
+        map.set(1,"sonam");
+        map.set(2,'alex');
+        map.set(3,'bob');
+        map.set(4,'catty');
+
+        console.log(map);
+        console.log("map has key 4? "+map.has(4));
+        console.log('get the value for key 3: '+map.get(3));
+        console.log("Before delete size: "+map.size);
+        map.delete(4);
+        console.log("After delete size: "+map.size);
+
+        var obj=map.entries();
+        for(let x of obj){
+            console.log(x[0]+" "+x[1]);
+        }
+        console.log("display all keys")
+        for(let x of map.keys()){
+            console.log(x);
+        }
+        console.log("display all Values")
+        for(let x of map.values()){
+            console.log(x);
+        }
+
+        map.forEach(
+            (value,key)=>console.log(key+" : "+value)
+        )
+
+        map.clear();
+        console.log("After clear: "+map.size)
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Employee{
+
+            constructor(name,designation,salary){
+                this.name=name;
+                this.designation=designation;
+                this.salary=salary;
+            }
+
+            print() {
+                console.log("Name: "+this.name);
+                console.log("Designation: "+this.designation);
+                console.log("Salary: "+this.salary);
+            }
+
+            checkSalary(){
+                if(this.salary>=6){
+                    console.log(this.name+" Taxable Income")
+                }
+                else
+                console.log(this.name+ " Not taxable Income")
+            }
+        }
+
+        let emp1= new Employee("alex",'Senior Developer',17);
+        let emp2= new Employee("bob","Support Enginner",5);
+        emp1.print();
+        emp2.print();
+        emp1.checkSalary();
+        emp2.checkSalary();
+    </script>
+</body>
+</html>

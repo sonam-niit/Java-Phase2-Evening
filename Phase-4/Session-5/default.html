@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //keep default parameter at last in parameter list
+        function simpleIntrest(principle, rateOfIntrest=7.5, 
+        noOfYears=5){
+            return principle * rateOfIntrest * noOfYears/100;
+        }
+
+        console.log(simpleIntrest(3000,7,3));
+        console.log(simpleIntrest(4000));
+    </script>
+
+</body>
+
+</html>
