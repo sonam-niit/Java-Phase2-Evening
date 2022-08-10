@@ -1,0 +1,310 @@
+Installnode using .msi installer
+
+check node version: > node -v
+
+check npm version> npm -v
+
+-----------------------------------------------------
+
+if you want create package.json file then > npm init enter default answer by clicking on enter and it will create file.
+
+This file keep record of all dependencies of your project.
+
+---------------------------------------------------------------------------- 
+
+Install Typescript
+
+> npm install -g typescript
+
+checktype script version
+
+>tsc -v
+
+Compile typescript file -> tsc filename.ts
+
+run file >node filename.js
+-------------------------------------------------------------
+
+install angular: > npm install -g @angular/cli
+
+check version
+
+>ng version
+------------------------------------------------------------
+
+first of all moveto that folder where you want to create your angular app using cd command.
+
+>ng new firstapp
+
+it will ask you 2 question
+
+1.do you want to add routing? type y enter
+2. it shows some css formats -> press enter so it will take default CSS.
+
+------------------------------------------------------------------------
+
+>cd firstapp
+
+>ng serve 
+
+(serve your application on localhost:4200)
+
+------------------------------------------------------------------------
+
+Angular Application is divided into multiple components.
+
+why? because its a SPA so we need to divide out code in small units as component.
+
+you can create component as per your requirements.
+
+By default angular application is having a root componet which is called as app component.
+
+expand app folder to check files.
+
+app.component.ts --> we will write variables, methods etc (logic)
+
+app.component.html --> presentation code (HTML code)
+
+app.component.css --> styles
+
+these all files are interlinked.
+
+app.component.spec.ts (Testing file -- to test app component)
+
+app.module.ts --> main module file of your app
+(if you want to import,declare,export any thing then you should user this file)
+
+app-routingmodule.ts -- this is for implementing router(which we will understand later)
+
+------------------------------------------------------------------------------------------
+
+change app.component.html
+
+<h1>This is my First Angular App</h1>
+
+<h3>{{title}}</h3>
+
+change app.component.css
+
+h1{
+    background-color: aqua;
+}
+
+check the output
+
+---------------------------------------------------------------------------------------------
+
+Include Bootstrap in my angular.
+
+3 ways to include bootstrap in app.
+
+way 1:
+
+copy cdn and add them in index.html file
+--------------------------------------------------
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Firstappp</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <app-root></app-root>
+
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+--------------------------------------------------------------------------------------------------
+
+way 2:
+
+install bootstrap using npm
+
+>npm install bootstrap
+
+open style.css  addd below mentioned line
+
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+----------------------------------------------------------------------------------
+Way 3: download dependency and edit angular.json
+
+"styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+
+//here i have added the package reference but you can include downloaded file reference as well.
+
+when you change angular.json then restart your app again then only you can see the changes in your app.
+
+---------------------------------------------------------------------------------------------
+
+Component: is providing a template and view for page which you want to create
+
+each compnent has 4 files
+
+.html
+.css
+.ts
+.spec.ts (testing)
+---------------------------------------------------------------------------
+
+you need to declare your component in app.module.ts
+
+-----------------------------------------------------------------------------
+
+If you want to create component then just execute below mentioned command
+
+> ng generate component header
+
+it will create 4 files and update app.module.ts which imports HeaderComponent so you can use it in your application.
+
+to use open header.component.ts and copy the selector
+
+that you can include in app.component.html
+ 
+<app-header></app-header>
+
+where you add this tag at the same location you can see that component in browser.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

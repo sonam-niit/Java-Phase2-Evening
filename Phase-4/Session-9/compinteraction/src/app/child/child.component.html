@@ -1,0 +1,7 @@
+<div>
+    <h1>This is my Child Component</h1>
+    <h3>Value coming from Parent Component {{parentdata}}</h3>
+
+    Enter Any Value from Child: <input type="text" #ctext 
+    (keyup)="onChange(ctext.value)">
+</div>

@@ -1,0 +1,11 @@
+<h3>Event Binding Component</h3>
+<button (click)="displayAlert()" class="btn btn-primary">
+    Click me to get an alert Message
+</button>
+<button class="btn btn-secondary" (click)="show()" >Show Paragraph</button>
+
+<p *ngIf="visible">This is my Paragraph</p>
+<button class="btn btn-warning" (click)="showImage()">
+{{btnName}}
+</button>
+<img *ngIf="imgFlag" [src]="imgUrl">

@@ -1,0 +1,8 @@
+<div>
+  <h1>This is My Parent Component</h1>
+
+  <h3>Value coming from Child Component {{childData}}</h3>
+  Enter Any Value From Parent: <input type="text" (keyup)="0" #mydata/>
+</div>
+
+<app-child [parentdata]="mydata.value" (myEvent)="childData=$event"></app-child>

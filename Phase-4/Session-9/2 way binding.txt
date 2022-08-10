@@ -1,0 +1,55 @@
+Two way binding
+----------------------------
+
+usually we implement in Forms
+
+for that open app.module.ts and import forms module.
+in list import add below line
+import { FormsModule } from '@angular/forms';
+
+and add it in imports array as mentioned below
+
+imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule
+
+  ],
+--------------------------------------------------------------------
+open app.component.ts and declare variable named name.
+
+name:string = "Simplilearn"
+
+open app.component.html and declare input field with ngModel
+
+<h1>Welcome {{name}}</h1>
+<input type="text" [(ngModel)]="name"/>
+------------------------------------------------------------------------
+
+Save all files and check the output.
+----------------------------------------------------------------------------------
+
+if you want include multiple fields then all can find with diffrent variable
+
+app.component.html
+
+<h1>Welcome {{fname}} {{lname}}</h1>
+<input type="text" [(ngModel)]="fname"/>
+<input type="text" [(ngModel)]="lname"/>
+
+app.component.ts
+
+
+export class AppComponent {
+  title = 'compinteraction';
+
+  fname:string="Simplilearn";
+  lname:string="test";
+}
+
+
+
+
+
+
+
