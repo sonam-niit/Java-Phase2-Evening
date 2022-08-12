@@ -1,0 +1,90 @@
+Service and Injectables
+-------------------------------------
+
+create application > ng new services
+
+>cd services
+
+>ng serve
+
+open app.component.html and remove all codes and just display some title.
+
+Let's creat a service
+-----------------------------
+
+> ng g s user
+
+(it will create 2 files user.service.ts and user.service.spec.ts )
+
+services don't have any template. usually we should use them to make api calls.
+
+
+let's open a user.service.ts file you can see @Injectable included in the same
+
+creat one method as mentoned below and save.
+
+ getUser(){
+    return {"fname":"sonam","lname":"soni"};
+  }
+
+--------------------------------------------------------------
+
+Let's register it in list of provides.
+
+open app.module.ts
+
+in Providers array add UserService (require import as well)
+
+providers: [UserService],
+
+-------------------------------------------------------------
+
+Let's use it in Component.
+
+(never create objects of your services, inject dependency through constructor is the best way to inject service)
+
+open app.component.ts and add below mentioned code.
+
+import { Component } from '@angular/core';
+import { UserService } from './user.service';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+
+  title = 'services';
+  user={"fname":'',"lname":''};
+  //inject dependency through conatructor
+  constructor(private service:UserService){}
+
+  ngOnInit(){
+    this.user=this.service.getUser();
+  }
+}
+
+-------------------------------------------------------------------
+
+when app loads app component call its ngOnInit method and it will call get User method of service and we will be able to get user Data in user variable which we can display in app.component.html.
+
+
+<h1>Welcome to My Services Demo</h1>
+
+<h3>Data Coming from service</h3>
+<ul>
+    <li>First Name: {{user.fname}}</li>
+    <li>First Name: {{user.lname}}</li>
+</ul>
+
+Save all files and check the output.
+
+
+
+
+
+
+
+
+
