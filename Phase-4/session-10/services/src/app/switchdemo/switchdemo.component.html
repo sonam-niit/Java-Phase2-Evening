@@ -1,0 +1,16 @@
+<h1>Switch Demo</h1>
+Enter Any Number: <input type="text" [(ngModel)]="num"/>
+<div [ngSwitch]="num">
+    <div *ngSwitchCase="1">
+        Today is Monday
+    </div>
+    <div *ngSwitchCase="2">
+        Today is Tuesday
+    </div>
+    <div *ngSwitchCase="3">
+        topday is Wednesday
+    </div>
+    <div *ngSwitchCase="4">
+        Today is Thursday
+    </div>
+</div>
