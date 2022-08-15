@@ -4,6 +4,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
+import { UserlistComponent } from './userlist/userlist.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path:'home',component:HomeComponent},
   {path:"contactus",component:ContactusComponent},
   {path:'register',component:RegisterComponent},
+  {path:'list',component:UserlistComponent},
   {path:'**',component:PageNotFoundComponent}
 ];
 

@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserlistComponent } from './userlist/userlist.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HomeComponent,
     RegisterComponent,
     ContactusComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    UserlistComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

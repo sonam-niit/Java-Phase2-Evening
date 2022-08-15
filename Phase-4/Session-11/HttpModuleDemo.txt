@@ -1,0 +1,168 @@
+HTTP working
+--------------------------------------
+
+Let's fetch the data from some fake api
+https://jsonplaceholder.typicode.com/users
+
+create component> ng g c userlist
+
+let's import HttpClientModule in app.module.ts
+-------------------------------------------------------
+
+import {HttpClientModule} from '@angular/common/http';
+
+and include in list of imports
+
+imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule
+  ],
+
+
+***************************************************************************************
+
+Let's Create A user model: create class named address.model.ts
+
+export class Address{
+    street:string;
+    suite:string;
+    city:string;
+    zipcode:string;
+}
+
+create user.model.ts
+
+import { Address } from "./address.model";
+
+export class User{
+    id:number;
+    name:string;
+    username:string;
+    email:string;
+    address:Address;
+}
+
+---------------------------------------------------------------------
+
+your model classes may be giving you the errors for object initialization to remove open tsconfig.json and add below mentioned line in compilerOptions.
+
+
+ "strictPropertyInitialization": false,
+
+______________________________________________________________________________________________
+
+Let's create a service to fetch Data using http
+
+>ng g s user
+
+
+open user.service.ts file inject http dependency in constructor and create methods to fetch data
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from './user.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+
+  constructor(private http: HttpClient) { }
+
+  baseUrl:string= "https://jsonplaceholder.typicode.com/users";
+  getAllUsers(): Observable<User[]>{
+      return this.http.get<User[]>(this.baseUrl);
+  }
+
+  getUserById(id:number): Observable<User>{
+    return this.http.get<User>(this.baseUrl+"/"+id);
+  }
+}
+
+
+________________________________________________________________________________________________
+
+Let's Use this service in userList Component
+
+open userlist.component.ts
+
+inject service object and call getAll method in ngOnInit()
+
+
+import { Component, OnInit } from '@angular/core';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
+
+@Component({
+  selector: 'app-userlist',
+  templateUrl: './userlist.component.html',
+  styleUrls: ['./userlist.component.css']
+})
+export class UserlistComponent implements OnInit {
+
+  constructor(private service:UserService) { }
+  users:User[];
+  ngOnInit(): void {
+    this.service.getAllUsers().subscribe(x=>this.users=x)
+  }
+
+}
+
+---------------------------------------------------------------------------------------
+display data using users object in userlist.component.html
+
+<h1>Users List</h1>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Username</th>
+            <th>email</th>
+            <th>Address</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let u of users">
+            <td>{{u.id}}</td>
+            <td>{{u.name}}</td>
+            <td>{{u.username}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.address.city}} {{u.address.suite}} {{u.address.zipcode}}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
