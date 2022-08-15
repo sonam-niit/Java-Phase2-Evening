@@ -1,0 +1,37 @@
+Routing
+-------------------------------
+
+first of all create components Home, contactus, aboutUs, Register, pagenot found etc.
+
+Let's create routes for all this components. open app.routingmodule.ts and in routes array add below mentioned routes.
+
+const routes: Routes = [
+  {path:'',redirectTo:"home",pathMatch:'full'},
+  {path:'home',component:HomeComponent},
+  {path:"contactus",component:ContactusComponent},
+  {path:'register',component:RegisterComponent},
+  {path:'**',component:PageNotFoundComponent}
+];
+
+__________________________________________________________________________________
+
+open app.component.html and create routerLinks
+
+<div class="container">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="home">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="contactus">Contact Us</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="register">Register</a>
+        </li>
+    </ul>
+    <router-outlet></router-outlet>
+</div>
+
+------------------------------------------------------------------------------------
+
+Run application and checl output.
