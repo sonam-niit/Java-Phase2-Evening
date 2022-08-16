@@ -1,13 +1,18 @@
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>Id</th><th>name</th>
+            <th>Id</th><th>name</th><th>Email</th><th>Options</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let u of users">
             <td>{{u.id}}</td>
             <td>{{u.name}}</td>
+            <td>{{u.email}}</td>
+            <td><a routerLink="/user-details/{{u.id}}"><button class="btn btn-primary">Show</button></a>
+                <button class="btn btn-danger" (click)="delete(u.id)">Delete</button>
+                <a routerLink="/edit/{{u.id}}"><button class="btn btn-success">Edit</button></a>
+            </td>
         </tr>
     </tbody>
 </table>

@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3">
+            <h2 class="text-danger">Edit User</h2>
+            <button class="btn btn-warning" (click)="goback()">Back</button>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" formControlName="name" class="form-control" [(ngModel)]="user.name"
+                    [ngClass]="{'is-invalid':submitted && form['name'].errors}">
+
+                    <div *ngIf="submitted && form['name'].errors" class="invalid-feedback">
+                        <div *ngIf="form['name'].errors['required']">
+                            Name cannot be Empty
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" formControlName="email" class="form-control"
+                    [ngClass]="{'is-invalid':submitted && form['email'].errors}" [(ngModel)]="user.email">
+                    <div *ngIf="submitted && form['email'].errors" class="invalid-feedback">
+                        <div *ngIf="form['email'].errors['required']">
+                            Email cannot be Empty
+                        </div>
+                        <div *ngIf="form['email'].errors['email']">
+                            Enter Valid EmailId
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" formControlName="password" class="form-control"
+                    [ngClass]="{'is-invalid':submitted && form['password'].errors}" [(ngModel)]="user.password">
+                    <div *ngIf="submitted && form['password'].errors" class="invalid-feedback">
+                        <div *ngIf="form['password'].errors['required']">
+                            Password cannot be Empty
+                        </div>
+                        <div *ngIf="form['password'].errors['minlength']">
+                            Password must have atleast 8 character
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Country</label>
+                    <input type="text" formControlName="country" class="form-control"
+                    [ngClass]="{'is-invalid':submitted && form['country'].errors}" [(ngModel)]="user.country">
+                    <div *ngIf="submitted && form['country'].errors" class="invalid-feedback">
+                        <div *ngIf="form['country'].errors['required']">
+                            Country cannot be Empty
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <button class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
