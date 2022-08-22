@@ -1,0 +1,65 @@
+Create Any Springbootproject with REST Api
+---------------------------------------------------
+
+let's create a documentation of your project with Swagger.
+
+include below mentioned 2 dependencies in your project
+
+<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+
+______________________________________________________________________________
+
+open application.properties and add below mentioned properties
+
+spring.mvc.pathmatch.matching-strategy=ANT_PATH_MATCHER
+
+-------------------------------------------------------------------
+
+open main application code and add below mentioned method 
+
+
+package com.simplilearn.rest;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+@SpringBootApplication
+@EnableSwagger2
+public class RestfullWebServicesApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(RestfullWebServicesApplication.class, args);
+	}
+
+	@Bean
+	public Docket allApis() {
+		return new Docket(DocumentationType.SWAGGER_2)
+				.select().apis(RequestHandlerSelectors.basePackage("com.simplilearn.rest"))
+				.build();
+	}
+}
+
+___________________________________________________________________________________________________
+
+After the same run your project and open this link to check your documentation.
+
+http://localhost:8082/swagger-ui.html
+
+you can test your apis from here as well.
