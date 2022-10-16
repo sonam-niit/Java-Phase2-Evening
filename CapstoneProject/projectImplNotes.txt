@@ -1,0 +1,90 @@
+Springboot Project (Backend- api)
+----------------------------
+
+Spring web
+Spring Data JPA
+MySQL Driver
+Spring devtools
+
+(add all this dependencies while creating a project)
+_______________________________________________________________
+
+add all DB properties in application.properties file
+
+create Model (Entities)
+---------------------------------------
+customer(id,name,phone, address,email,password)
+product(id, name,price, description, rating)
+admin (id,username,paasword)
+categories(id, name, description)
+order(oid, pid, cid, payment)
+
+(Entity class Requires variable declaration, default and parameterized constructor, getters and setters, toString method)
+
+If project required any relationships that you can add
+
+1 catogory --> many products
+
+(create all this entities in your model package)
+
+
+create Repository
+-----------------------------------------------------
+@Repository
+interface CustomerRepository extends JPArepository<Customer,Integer>
+{
+}
+
+create repo for all.
+
+create Service
+-----------------------------
+
+interface CustomerService{
+	public Customer addCustomer(Customer c);
+	//list all methods 
+}
+
+@Service
+class CustomerServiceimpl implements CustomerService{
+
+	@Autowired
+	private CustomerRepository repo;
+
+	public Customer addCustomer(Customer c){
+		return repo.save(c);
+	}
+}
+
+create for all services.
+
+Create Controllers
+--------------------------------------
+
+class customerController{
+	@Autowired
+	private CustomerService service;
+	@PostMapping("/api/customer")
+	public ResponseEntity<Object> saveCustomer(@RequestBody Customer cust)
+	{
+		return new ResponseEntity<Object>(service.addCustomer(cust),HttpStatus.OK);
+	}
+}
+
+Test using PostMan tool.
+
+localhost:8081/api/customer (get, getById, put,post, delete)
+localhost:8081/api/products (get.getById,put, post, delete)
+
+
+
+
+
+
+
+
+
+
+
+
+
