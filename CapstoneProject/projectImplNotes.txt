@@ -1,10 +1,11 @@
 Springboot Project (Backend- api)
 ----------------------------
 
-Spring web
-Spring Data JPA
-MySQL Driver
-Spring devtools
+Spring web : which provide all sping web classes and interfaces to work
+Spring Data JPA: provies all classes and interfaces related to hibernate (persisetence)
+(@Entity, @Table, @Id, @GeneratedValue,@Column)
+MySQL Driver: MySQL database dependency to connect with Database
+Spring devtools: help you to restart your application automatically when you change code nof your application.
 
 (add all this dependencies while creating a project)
 _______________________________________________________________
