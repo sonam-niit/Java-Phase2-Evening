@@ -1,0 +1,307 @@
+Create Angular Project: ng new frontend
+
+select routing: y and default css is css only.
+
+open the folder in VS Code and run ng serve command
+-----------------------------------------------------------
+
+create Model folder in app folder and create new file named product.ts 
+
+export class Product{
+    id:number;
+    name:string;
+    price:number;
+    rating:number;
+}
+------------------------------------
+
+now to resolve the error open tsconfig.json file and add below mention property.
+
+"strictPropertyInitialization": false,
+
+save ane error will get resolved.
+
+Now to fetch data from API we need to import HttpModule so edit app.module.ts as mentioned below.
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import {HttpClientModule} from '@angular/common/http';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,FormsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+======================================================================================
+Let'c create a Service for making API calls.
+
+ng g s product
+
+open product.service.ts file and do the api calls.
+
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Product } from './model/product';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductService {
+
+  baseUrl:string="http://localhost:8081/api/product/";
+  constructor(private http: HttpClient) { }
+  getAllProducts():Observable<Product[]>{
+    return this.http.get<Product[]>(this.baseUrl);
+  }
+  getProductById(id:number):Observable<Product>{
+    return this.http.get<Product>(this.baseUrl+id);
+  }
+  deleteProductById(id:number){
+    return this.http.delete(this.baseUrl+id);
+  }
+  updateProductById(id:number,product:Product){
+    return this.http.put(this.baseUrl+id, product);
+  }
+  saveProduct(product:Product){
+    return this.http.post(this.baseUrl,product);
+  }
+}
+_____________________________________________________________________________
+
+Once the services are ready let's create required components.
+
+ng g c list-product
+ng g c add-product
+ng g c edit-product
+ng g c detail-product
+
+Let's implement routing by editing app-routing.module.ts file.
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AddProductComponent } from './add-product/add-product.component';
+import { DetailProductComponent } from './detail-product/detail-product.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
+import { ListProductComponent } from './list-product/list-product.component';
+
+const routes: Routes = [
+  {path:"list-product",component:ListProductComponent},
+  {path:"add-product",component:AddProductComponent},
+  {path:"details/:id",component:DetailProductComponent},
+  {path:"edit/:id",component:EditProductComponent}
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+======================================================================
+
+Create links in app.component.html file
+
+<a routerLink="list-product">Show All Product</a> |
+
+<a routerLink="add-product">Add Product</a>
+
+<router-outlet></router-outlet>
+
+=====================================================================
+
+edit list-product.component.ts file
+
+import { Component } from '@angular/core';
+import { Product } from '../model/product';
+import { ProductService } from '../product.service';
+
+@Component({
+  selector: 'app-list-product',
+  templateUrl: './list-product.component.html',
+  styleUrls: ['./list-product.component.css']
+})
+export class ListProductComponent {
+
+  products:Product[]
+  constructor(private service:ProductService){}
+
+  ngOnInit(){
+    this.service.getAllProducts().subscribe(x=>this.products=x);
+  }
+}
+
+====================================================================================
+edit list-product.component.html
+
+<h1>Product List</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th><th>Name</th><th>Price</th><th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products">
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.rating}}</td>
+        </tr>
+    </tbody>
+</table>
+
+==============================================================================
+
+Check if in console getting error of CORS policy the go to your JAVA code and edit the controllers first line by including this code.
+@CrossOrigin("http://localhost:4200")
+
+After that the data is accessible.
+
+=====================================================================================
+
+For Data Insertion
+
+edit add-product.component.ts
+
+import { Component } from '@angular/core';
+import { Product } from '../model/product';
+import { ProductService } from '../product.service';
+
+@Component({
+  selector: 'app-add-product',
+  templateUrl: './add-product.component.html',
+  styleUrls: ['./add-product.component.css']
+})
+export class AddProductComponent {
+
+  product:Product= new Product();
+
+  constructor(private service:ProductService){}
+  onSubmit(){
+    alert("form submitted")
+    console.log(this.product);
+    this.service.saveProduct(this.product).subscribe(x=>console.log(x));
+  }
+}
+
+=========================================================================================
+edit add-product.component.html file
+
+<h1 class="text-center">Add Product</h1>
+<div class="col-md-6 offset-3">
+<form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" id="name" class="form-control" 
+        placeholder="Enter Product Name" [(ngModel)]="product.name">
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input type="text" name="Price" id="Price" class="form-control" 
+        placeholder="Enter Product Price" [(ngModel)]="product.price">
+    </div>
+    <div class="form-group">
+        <label>Rating</label>
+        <input type="text" name="rating" id="rating" class="form-control" 
+        placeholder="Enter Product rating" [(ngModel)]="product.rating">
+    </div>
+    <button class="btn btn-primary">Save Product</button>
+</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
